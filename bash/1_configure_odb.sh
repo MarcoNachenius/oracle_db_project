@@ -113,8 +113,11 @@ create_oracle_user_bash_profile() {
     echo "PATH=\$PATH:\$HOME/.local/bin:\$ORACLE_HOME/bin" >> /home/oracle/.bash_profile
     echo "export PATH" >> /home/oracle/.bash_profile
 
+    cp config_files/text.txt /home/oracle/text.txt
+
     # Set correct ownership
     chown oracle:oinstall /home/oracle/.bash_profile
+    chown oracle:oinstall /home/oracle/text.txt
 
     # Enable bash profile for oracle user
     su -l oracle -c ". .bash_profile"
