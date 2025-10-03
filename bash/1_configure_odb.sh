@@ -71,7 +71,6 @@ create_oracle_user_bash_profile() {
 
     # Set correct ownership
     chown oracle:oinstall /home/oracle/.bash_profile
-    chown oracle:oinstall /home/oracle/text.txt
 
     # Enable bash profile for oracle user
     su -l oracle -c ". .bash_profile"
