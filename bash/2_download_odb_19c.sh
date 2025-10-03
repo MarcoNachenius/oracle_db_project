@@ -6,5 +6,4 @@ ORACLE_PROFILE_PASSWORD="BePoes1992@"
 
 # Download package into tmp/
 wget --user="$ORACLE_PROFILE_NAME" --password="$ORACLE_PROFILE_PASSWORD" \
-     --no-check-certificate \
      "$ORACLE_DOWNLOAD_URL" -O /tmp/oracle-database-ee-19c-1.0-1.x86_64.rpm
