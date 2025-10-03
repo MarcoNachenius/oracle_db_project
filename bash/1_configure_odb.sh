@@ -66,54 +66,8 @@ create_oracle_user_privileges() {
 create_oracle_user_bash_profile() {
     echo "Creating bash profile for user '$ORACLE_USER_NAME'"
 
-    # First line uses > to overwrite file if it exists, subsequent lines use >>
-    echo "# Source global bashrc if it exists" > /home/oracle/.bash_profile
-    echo "if [ -f ~/.bashrc ]; then" >> /home/oracle/.bash_profile
-    echo "    . ~/.bashrc" >> /home/oracle/.bash_profile
-    echo "fi" >> /home/oracle/.bash_profile
-    echo "" >> /home/oracle/.bash_profile
-    
-    # Oracle environment variables section
-    echo "# Oracle Database Environment Variables" >> /home/oracle/.bash_profile
-    echo "" >> /home/oracle/.bash_profile
-    
-    # Oracle base directory
-    echo "# Base directory for Oracle installations" >> /home/oracle/.bash_profile
-    echo "export ORACLE_BASE=/u01/app/oracle" >> /home/oracle/.bash_profile
-    
-    # Oracle home directory
-    echo "# Oracle home directory for the database installation" >> /home/oracle/.bash_profile
-    echo "export ORACLE_HOME=/u01/app/oracle/product/19c/db_home" >> /home/oracle/.bash_profile
-    echo "" >> /home/oracle/.bash_profile
-    
-    # Oracle SID
-    echo "# Oracle System Identifier (database instance name)" >> /home/oracle/.bash_profile
-    echo "export ORACLE_SID=CDB" >> /home/oracle/.bash_profile
-    echo "" >> /home/oracle/.bash_profile
-    
-    # Library paths
-    echo "# Library search path for Oracle shared libraries" >> /home/oracle/.bash_profile
-    echo "export LD_LIBRARY_PATH=\$ORACLE_HOME/lib:/lib:/usr/lib" >> /home/oracle/.bash_profile
-    
-    # Java classpath
-    echo "# Java classpath for Oracle Java applications" >> /home/oracle/.bash_profile
-    echo "export CLASSPATH=\$ORACLE_HOME/jlib:\$ORACLE_HOME/rdbms/jlib" >> /home/oracle/.bash_profile
-    
-    # NLS settings
-    echo "# National Language Support - language and character set" >> /home/oracle/.bash_profile
-    echo "export NLS_LANG=american_america.al32utf8" >> /home/oracle/.bash_profile
-    
-    # Date format
-    echo "# Default date format for Oracle SQL" >> /home/oracle/.bash_profile
-    echo "export NLS_DATE_FORMAT='yyyy-mm-dd:hh24:mi:ss'" >> /home/oracle/.bash_profile
-    echo "" >> /home/oracle/.bash_profile
-    
-    # PATH configuration
-    echo "# Update PATH to include Oracle binaries" >> /home/oracle/.bash_profile
-    echo "PATH=\$PATH:\$HOME/.local/bin:\$ORACLE_HOME/bin" >> /home/oracle/.bash_profile
-    echo "export PATH" >> /home/oracle/.bash_profile
-
-    cp config_files/text.txt /home/oracle/text.txt
+    # Copy pre-built bash profile to oracle user
+    cp config_files/.bash_profile /home/oracle/.bash_profile
 
     # Set correct ownership
     chown oracle:oinstall /home/oracle/.bash_profile
